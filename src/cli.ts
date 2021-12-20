@@ -14,7 +14,7 @@ function main(argv:any){
     async function sendIPFS(id:number,fileName:string){
         let accounts = await web3.eth.getAccounts()   // Get account addresses from Ganache
         if (isNaN(id)){
-            console.log("invalid account number")
+            console.log("Invalid account number")
             return
         }
         let account=accounts[id] //the selected account address

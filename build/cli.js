@@ -27,7 +27,7 @@ function main(argv) {
         return __awaiter(this, void 0, void 0, function* () {
             let accounts = yield web3.eth.getAccounts(); // Get account addresses from Ganache
             if (isNaN(id)) {
-                console.log("invalid account number");
+                console.log("Invalid account number");
                 return;
             }
             let account = accounts[id]; //the selected account address
@@ -53,7 +53,7 @@ function main(argv) {
         sendIPFS(+argv[1], argv[3]);
     }
     else {
-        console.log("Invalid Input: Enter Account Number");
+        console.log("Invalid Input");
     }
 }
 main(process.argv.slice(2));
