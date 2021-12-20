@@ -25,12 +25,12 @@ const STORE_ADDRESS = process.env.STORE_ADDRESS; //Get Smart Contract address
 function main(argv) {
     function sendIPFS(id, fileName) {
         return __awaiter(this, void 0, void 0, function* () {
-            let accounts = yield web3.eth.getAccounts(); // Get account address from Ganache
+            let accounts = yield web3.eth.getAccounts(); // Get account addresses from Ganache
             if (isNaN(id)) {
                 console.log("invalid account number");
                 return;
             }
-            let account = accounts[id]; //t selected account address
+            let account = accounts[id]; //the selected account address
             if (!(0, fs_1.existsSync)(fileName)) {
                 console.log("File not found");
                 return;
@@ -41,7 +41,7 @@ function main(argv) {
                 if (!err) {
                     const contract = new web3.eth.Contract(Store_json_1.default.abi, STORE_ADDRESS);
                     const receipt = yield contract.methods.storeCID(ipfsHash[0].hash).send({ from: account, gas: 6721975, gasPrice: '30000000' }); //store cid in smart contracts
-                    console.log(receipt.events.itemSaved.returnValues.id);
+                    console.log("The file with ID " + receipt.events.itemSaved.returnValues.id + " has been saved");
                 }
                 else {
                     console.log(err);
