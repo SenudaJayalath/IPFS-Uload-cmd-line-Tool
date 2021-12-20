@@ -1,0 +1,24 @@
+{
+  "name": "IPFS-Uload-cmd-line-Tool",
+  "version": "1.0.0",
+  "description": "This is a typescript based command line tool which will take a local file on your computer, upload it to IPFS and store the cid in Ethereum",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SenudaJayalath/IPFS-Uload-cmd-line-Tool.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SenudaJayalath/IPFS-Uload-cmd-line-Tool/issues"
+  },
+  "homepage": "https://github.com/SenudaJayalath/IPFS-Uload-cmd-line-Tool#readme",
+  "dependencies": {
+    "ipfs-api": "^26.1.2",
+    "web3": "^1.6.1"
+  }
+}
