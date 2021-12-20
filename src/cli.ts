@@ -1,15 +1,10 @@
 #!/usr/bin/env node
-
-// import yargs from 'yargs';
-// import { hideBin } from 'yargs/helpers';
-//import * as IPFS from 'ipfs-api'
-import ABI from "./abis/Store.json"
-const IPFS =require('ipfs-api')
 import Web3 from 'web3'
 import dotenv from "dotenv";
+import ABI from "./abis/Store.json"
+const IPFS =require('ipfs-api')
 dotenv.config()
 var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
-
 const ipfs =new IPFS({host:'ipfs.infura.io',port:5001,protocol:'https'})
 const STORE_ADDRESS=process.env.STORE_ADDRESS
 import { readFileSync,existsSync } from 'fs';
@@ -21,7 +16,7 @@ function main(argv:any){
     async function sendIPFS(id:number,fileName:string){
         let accounts = await web3.eth.getAccounts()
         if (isNaN(id)){
-            console.log("err")
+            console.log("invalid account number")
             return
         }
         let account=accounts[id]
@@ -44,7 +39,7 @@ function main(argv:any){
     if (argv[0] == "--account" && argv[2] == "--filePath" ){
         sendIPFS(+argv[1],argv[3])
     }else {
-         console.log("Invalid Input: Enter Account Number")
+        console.log("Invalid Input: Enter Account Number")
     }
 }
 main(process.argv.slice(2))

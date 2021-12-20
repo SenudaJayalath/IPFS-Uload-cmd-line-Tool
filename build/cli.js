@@ -13,13 +13,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// import yargs from 'yargs';
-// import { hideBin } from 'yargs/helpers';
-//import * as IPFS from 'ipfs-api'
-const Store_json_1 = __importDefault(require("./abis/Store.json"));
-const IPFS = require('ipfs-api');
 const web3_1 = __importDefault(require("web3"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const Store_json_1 = __importDefault(require("./abis/Store.json"));
+const IPFS = require('ipfs-api');
 dotenv_1.default.config();
 var web3 = new web3_1.default(new web3_1.default.providers.HttpProvider('http://localhost:7545'));
 const ipfs = new IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' });
@@ -30,7 +27,7 @@ function main(argv) {
         return __awaiter(this, void 0, void 0, function* () {
             let accounts = yield web3.eth.getAccounts();
             if (isNaN(id)) {
-                console.log("err");
+                console.log("invalid account number");
                 return;
             }
             let account = accounts[id];
