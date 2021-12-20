@@ -16,31 +16,31 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const web3_1 = __importDefault(require("web3"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const Store_json_1 = __importDefault(require("./abis/Store.json"));
+const fs_1 = require("fs");
 const IPFS = require('ipfs-api');
 dotenv_1.default.config();
 var web3 = new web3_1.default(new web3_1.default.providers.HttpProvider('http://localhost:7545'));
 const ipfs = new IPFS({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' });
-const STORE_ADDRESS = process.env.STORE_ADDRESS;
-const fs_1 = require("fs");
+const STORE_ADDRESS = process.env.STORE_ADDRESS; //Get Smart Contract address
 function main(argv) {
     function sendIPFS(id, fileName) {
         return __awaiter(this, void 0, void 0, function* () {
-            let accounts = yield web3.eth.getAccounts();
+            let accounts = yield web3.eth.getAccounts(); // Get account address from Ganache
             if (isNaN(id)) {
                 console.log("invalid account number");
                 return;
             }
-            let account = accounts[id];
+            let account = accounts[id]; //t selected account address
             if (!(0, fs_1.existsSync)(fileName)) {
                 console.log("File not found");
                 return;
             }
-            const file = (0, fs_1.readFileSync)(fileName, 'utf-8');
+            const file = (0, fs_1.readFileSync)(fileName, 'utf-8'); //Read file   
             let buffer = Buffer.from(file);
             yield ipfs.add(buffer, (err, ipfsHash) => __awaiter(this, void 0, void 0, function* () {
                 if (!err) {
                     const contract = new web3.eth.Contract(Store_json_1.default.abi, STORE_ADDRESS);
-                    const receipt = yield contract.methods.storeCID(ipfsHash[0].hash).send({ from: account, gas: 6721975, gasPrice: '30000000' });
+                    const receipt = yield contract.methods.storeCID(ipfsHash[0].hash).send({ from: account, gas: 6721975, gasPrice: '30000000' }); //store cid in smart contracts
                     console.log(receipt.events.itemSaved.returnValues.id);
                 }
                 else {

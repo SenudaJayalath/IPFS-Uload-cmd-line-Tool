@@ -17,6 +17,7 @@ contract Store {
         newItemId++;
         //Save cid and its relevant id
         Items[newItemId] = Item(newItemId, cid);
+        //emit event
         emit itemSaved(newItemId);
     }
 }
