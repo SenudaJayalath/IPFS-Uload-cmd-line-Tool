@@ -50,7 +50,7 @@ A string as shown below will appear on the console.
 - >Invalid Input
     - The input is not valid. It should be of the form `node ./build/cli.js --account <number> --filePath <file-path>`
  - >Invalid Account Number
-    - The `<number` passed should be an integer in the range 0-9. With this parameter you can choose which account address will be used to store the cid in the blockchain.
+    - The `<number>` passed should be an integer in the range 0-9. With this parameter you can choose which account address will be used to store the cid in the blockchain.
  - >File Not Found
     - The `<file-path>` passed should point to a valid file on your computer. Eg: C:\Users\Desktop\abc.txt
 
